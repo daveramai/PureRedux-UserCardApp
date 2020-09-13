@@ -12,8 +12,12 @@ class App extends Component {
   }
 
   updateLikes = (e) => {
-    const likes = e.target.dataset.likes;
+    e.preventDefault();
+    const likes = e.target.likes.value;
+    // update state via redux
     store.dispatch(setLikes(likes));
+    //clear input field on form
+    e.target.likes.value = "";
   };
 
   render() {
@@ -34,12 +38,10 @@ class App extends Component {
             <span className="faint">I like</span> {likes}
           </p>
           <div>
-            <button
-              type="submit"
-              onClick={this.updateLikes}
-              data-likes="Driving, Gymming">
-              Update Likes
-            </button>
+            <form onSubmit={this.updateLikes}>
+              <input type="text" name="likes" placeholder="Enter likes here" />
+              <button type="submit">Update</button>
+            </form>
           </div>
 
           <p className="User__info__details User__info__divider faint">
