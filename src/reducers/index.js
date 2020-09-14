@@ -3,7 +3,7 @@ export default (state, action) => {
     case "UPDATE_LIKES":
       return {
         ...state,
-        likes: action.text,
+        likes: state.likes + ", " + action.text,
       };
     default:
       return state;
